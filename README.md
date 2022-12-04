@@ -98,8 +98,8 @@ swagger will be Running on
 
 | Author                | Profile Link                                       |
 | --------------------- | :------------------------------------------------- |
-| **Jose Martinez N** | **[jamp](https://github.com/joshepp)** |
-| **Oscar Pinzon N** | **[opinzon](https://github.com/oscarpinzon)** |
-| **Smith Mehta N** | **[smetha](https://github.com/)** |
+| **Jose Martinez** | **[jamp](https://github.com/joshepp)** |
+| **Oscar Pinzon** | **[opinzon](https://github.com/oscarpinzon)** |
+| **Smith Mehta** | **[smetha](https://github.com/)** |
 
  
