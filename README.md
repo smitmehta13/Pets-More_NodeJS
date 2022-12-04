@@ -10,13 +10,15 @@
 
 
 ## What is this for?
-Assignment 4
+
+### Assignment 4
+
 -Instructions
 -Server NodeJS
 -Client PostMan
 -Database MongoDB/Mongoose
 
-Task
+### Task
 
 Working in groups of up to 3, create a NodeJS implementation of the server components required to provide data from a MongoDB database instance to the Javascript client described in Project 1.
 To complete this project, you will need database entities like the following:
@@ -28,7 +30,7 @@ To complete this project, you will need database entities like the following:
 You will test your project using PostMan to validate your endpoints behave appropriately in both success and failure cases. Provide captured test output as part of your assignment submission. You should, in theory, be able to use the same PostMan tests for assignments 2-4.
 
 
-Marks
+### Marks
 
 Distribution of marks is as follows:
 
@@ -45,12 +47,12 @@ This Project is not deployed yet.
 ## Running the tests
 
 ### swagger
-Allows the develpers to see documentation
+Allows the developers to see the documentation
 <img src="https://dev.azure.com/Jmartinezpineda4056/7fc0b520-5dad-49ab-a6f6-6d72204fad0f/_apis/git/repositories/0707e200-be92-4daf-987d-73de9331912d/items?path=/docs/swagger.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0" height="400" width="500" style="border: 1px solid black;">
  
 
 ### DataBase:
-Here we use **[MongoDB Atlas(Cloud)](https://www.mongodb.com/cloud/atlas)** as the database. Here we have these collections created, named as:
+Here we use **[MongoDB](https://www.mongodb.com)** as the database. Here we have these collections created, named as:
 - users.
 - counters.
 - comments.
@@ -62,7 +64,7 @@ Tools that we need to run this app:
 
 - ***[Node.js](https://nodejs.org/en/)***
 - ***[Node Package Manager](https://www.npmjs.com/get-npm)***
-- ***[MongoDB (Atlas)](https://www.mongodb.com/cloud/atlas)***
+- ***[MongoDB ](https://www.mongodb.com)***
 
 
 ## Installing
