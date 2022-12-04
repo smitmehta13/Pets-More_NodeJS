@@ -89,7 +89,7 @@ The server will start Running on
 | Author                | Profile Link                                       |
 | --------------------- | :------------------------------------------------- |
 | **Jose Martinez N** | **[jamp](https://github.com/joshepp)** |
-| **Jose Martinez N** | **[opinzon](https://github.com/oscarpinzon)** |
-| **Smith Metha N** | **[smetha](https://github.com/)** |
+| **Oscar Pinzon N** | **[opinzon](https://github.com/oscarpinzon)** |
+| **Smith Mehta N** | **[smetha](https://github.com/)** |
 
  
