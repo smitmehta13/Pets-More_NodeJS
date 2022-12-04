@@ -3,17 +3,20 @@ const express = require('express');
  
 const router= express.Router();
 
-//User
+//Comment
  
 router.get('/comment',commentController.findAllComments);
 
-//router.get('/users/:id',userController.findById);
+router.get('/comment/:id',commentController.findById);
+
+router.get('/comment/product/:id',commentController.findCommentByProduct);
  
 router.post('/comment',commentController.addComment);
 
-//router.put('/users/:id',userController.updateUser);
 
-//router.delete('/users/:id',userController.deleteUser);
+router.put('/comment/:id',commentController.updateComment);
+
+router.delete('/comment/:id',commentController.deleteComment);
 
  
 

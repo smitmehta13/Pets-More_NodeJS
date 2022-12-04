@@ -1,7 +1,7 @@
 const swaggerAutogen = require('swagger-autogen')()
 
 const outputFile = './swagger_output.json'
-const endpointsFiles = ['./router/User.js','./router/Database.js','./router/Comment.js']
+const endpointsFiles = ['./router/User.js','./router/Database.js','./router/Comment.js','./router/Product.js']
 const dotenv = require('dotenv').config();
 const port = process.env.PORT||5000;
 const doc = {
@@ -35,7 +35,28 @@ const doc = {
             image: null,
             $userId:1
         },
-         
+        comments:[{
+            $id:1,
+            $rating:5,
+            $text:"This is a comment",
+            image: null,
+            $userId:1
+        }],
+
+        product:{
+            $id:1,
+            $description:"This is a product",
+            $ImageString: null,
+            $pricePerUnit: 10.99,
+            $shippingCost: 5.99
+        },
+        products:[{
+            $id:1,
+            $description:"This is a product",
+            $ImageString: null,
+            $pricePerUnit: 10.99,
+            $shippingCost: 5.99
+        }] 
 
     }
 }

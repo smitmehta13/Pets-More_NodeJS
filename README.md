@@ -56,6 +56,11 @@ Here we use **[MongoDB](https://www.mongodb.com)** as the database. Here we have
 - users.
 - counters.
 - comments.
+- products.
+- carts.
+- orders.
+
+
 
  
 

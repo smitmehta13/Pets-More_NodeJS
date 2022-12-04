@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Comment = require('../models/Comment');
 const User = require('../models/User');
+const Product = require('../models/Product');
 const asyncHandler = require ('express-async-handler'); 
 const db =mongoose.connection;
 
@@ -11,10 +12,10 @@ const findAllComments = asyncHandler( async (req,res) => {
  
 Comment.find({},(err,comments)=>{
         err && res.status(500).send({message:`Error: ${err}`});
-        !comments && res.status(404).send({message:'No users found'});
+        !comments && res.status(404).send({message:'No Comments found'});
          /* #swagger.responses[200] = { 
-               schema: { $ref: "#/definitions/users" },
-               description: 'Users found.' 
+               schema: { $ref: "#/definitions/comments" },
+               description: 'Comments found.' 
         } */
         res.status(200).json(comments);
     });
@@ -23,7 +24,7 @@ Comment.find({},(err,comments)=>{
 
 
  
-//Add   a user
+//Add   a comment
 const addComment = asyncHandler( async (req,res) => {
 
 // #swagger.tags = ['Comment']
@@ -35,10 +36,15 @@ const addComment = asyncHandler( async (req,res) => {
                 required: true,
                 schema: { $ref: "#/definitions/comment" }
         } */
-       
-          
-
- 
+        
+    // //Check if Product exists 
+    const product= await
+    Product.findOne({id:req.body.productId});
+    if(!product){
+        res.status(404).send({message:'Product not found'});
+    }
+    else
+    {
     User.findOne({id:req.body.userId
     },(err,user)=>{
         err && res.status(500).send({message:`Error: ${err}`});
@@ -58,7 +64,8 @@ const addComment = asyncHandler( async (req,res) => {
                         rating:req.body.rating,
                         text:req.body.text,
                         image:req.body.image,
-                        userId:req.body.userId
+                        userId:req.body.userId,
+                        productId:req.body.productId
                     });
 
                   
@@ -82,108 +89,85 @@ const addComment = asyncHandler( async (req,res) => {
 
 
     });
-
-
+    }
 }); 
-
  
  
 
         
 
+//Update a Comment
 
-//         // Comment.findOne({id:req.id},function(err,data){
-//         //     if(!data){
-//         //         var c;
-//         //         Comment.findOne({},function(err,data){
-
-//         //             if (data) {
-//         //                 console.log("if");
-//         //                 c = data.id + 1;
-//         //             }else{
-//         //                 c=1;
-//         //             }
-
-//         //             let comment = new Comment({
-//         //                 id:c,
-//         //                 rating:req.body.rating,
-//         //                 text:req.body.text,
-//         //                 image:req.body.image,
-//         //                 user:req.body.user
-//         //             });
-
-//         //             comment.save((err,comment)=>{
-//         //                 err && res.status(500).send({message:`Error: ${err}`});
-//         //                 !err && res.status(200).json(comment);
-//         //             });
-                
-                    
-//         //         }).sort({_id:-1}).limit(1);
-//         //     }else{
-//         //         res.status(500).send({message:'Comment already exists'});
-//         //     }
-//         // }
-//         // );
-
-
-
-
-
-
-
-
-
-// }) ;
- 
-//Update a User
-
-// const updateUser = asyncHandler( async (req,res) => {
-// // #swagger.tags = ['User']
-// // #swagger.description = 'Endpoint to update a user'
-// /* #swagger.parameters['updateUser'] = {
-//                 in: 'body',
-//                 description: 'User Information.',   
-//                 required: true,
-//                 schema: { $ref: "#/definitions/user" }
-//         } */
+const updateComment = asyncHandler( async (req,res) => {
+// #swagger.tags = ['Comment']
+// #swagger.description = 'Endpoint to update a comment'
+/* #swagger.parameters['updateComment'] = {
+                in: 'body',
+                description: 'Comment Information.',   
+                required: true,
+                schema: { $ref: "#/definitions/comment" }
+        } */
   
-//             User.findOneAndUpdate({id:req.params.id},req
-//             .body,{new:true},(err,user)=>{
-//                 err && res.status(500).send({message:`Error: ${err}`});
-//                 !err && res.status(200).json(user);
-//             });
+            Comment.findOneAndUpdate({id:req.params.id},req
+            .body,{new:true},(err,comment)=>{
+                err && res.status(500).send({message:`Error: ${err}`});
+                !comment && res.status(404).send({message:'Comment not found'});
+                /* #swagger.responses[200] = {
+                            schema: { $ref: "#/definitions/comment" },  
+                            description: 'Comment updated.'
+                    } */
+                comment && !err && res.status(200).json(comment);
+            });
         
         
-// }) ;
+}) ;
 
-// //Delete
-// const deleteUser = asyncHandler(  async (req,res) => {
-// // #swagger.tags = ['User']
-// // #swagger.description = 'Endpoint to delete a user'
+//Delete 
+const deleteComment = asyncHandler(  async (req,res) => {
+// #swagger.tags = ['Comment']
+// #swagger.description = 'Endpoint to delete a comment'
 
-//     User.findOneAndDelete({id:req.params.id},(err,user)=>{
-//         err && res.status(500).send({message:`Error: ${err}`});
-//         !err && res.status(200).send({message:`User deleted`});
-//     });
-// });
+    Comment.findOneAndDelete({id:req.params.id},(err,comment)=>{
+        err && res.status(500).send({message:`Error: ${err}`});
+        !comment && res.status(404).send({message:'Comment not found'});   
+        comment && !err && res.status(200).send({message:`Comment deleted`});
+    });
+    //if not found
     
-// //findById
-// const findById = asyncHandler( async (req,res )=>{
-//     // #swagger.tags = ['User']
-//     // #swagger.description = 'Endpoint to get a user by ID'
-//     // #swagger.parameters['id'] = { description: 'ID de Usuario.' }
+
+});
     
-//     User.findOne( 
-//         {id:req.params.id},
-//         (err,user)=>{
-//             err && res.status(500).send({message:`Error: ${err}`});
-//             !user && res.status(404).send({message:'User not found'});
+//findById
+const findById = asyncHandler( async (req,res )=>{
+    // #swagger.tags = ['Comment']
+    // #swagger.description = 'Endpoint to get a comment by ID'
+    // #swagger.parameters['id'] = { description: 'ID Comment.' }
+    
+    Comment.findOne( 
+        {id:req.params.id},
+        (err,comment)=>{
+            err && res.status(500).send({message:`Error: ${err}`});
+            !comment && res.status(404).send({message:'Comment not found'});
             
-//            !err && user && res.status(200).json(user);
-//         });
+           !err && comment && res.status(200).json(comment);
+        });
     
     
         
-//     });
+    });
 
-module.exports = {findAllComments,addComment} 
+     
+
+    const findCommentByProduct = asyncHandler( async (req,res) => {
+        // #swagger.tags = ['Comment']
+        // #swagger.description = 'Endpoint to get a comment by product'
+        // #swagger.parameters['id'] = { description: 'ID Product.' }
+        Comment.find({productId:req.params.id},(err,comments)=>{
+            err && res.status(500).send({message:`Error: ${err}`});
+            !comments && res.status(404).send({message:'No comments found'});
+            res.status(200).json(comments);
+        }
+        );
+    });
+
+module.exports = {findAllComments,addComment,findById,deleteComment,findCommentByProduct,updateComment} 

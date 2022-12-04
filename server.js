@@ -13,6 +13,7 @@ const dotenv = require('dotenv').config();
 const Users = require('./router/User');
 const Database = require('./router/Database');
 const Comment = require('./router/Comment');
+const Product = require('./router/Product');
 //swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger_output.json');
@@ -28,13 +29,21 @@ connectDB();
 //conn.dropDatabase();
 
 //Middlewares
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+
+//this method didin't work with big files
+
+//app.use(bodyParser.urlencoded({extended:false}));
+//app.use(bodyParser.json());
+
+//handling bodyparser with big files
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 //Routes
 app.use('/api',Users);
 app.use('/api',Database);
 app.use('/api',Comment);
+app.use('/api',Product);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const options = {

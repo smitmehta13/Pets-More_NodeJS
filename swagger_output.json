@@ -112,6 +112,9 @@
           "200": {
             "description": "OK"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -133,6 +136,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -177,9 +183,9 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Users found.",
+            "description": "Comments found.",
             "schema": {
-              "$ref": "#/definitions/users"
+              "$ref": "#/definitions/comments"
             }
           },
           "404": {
@@ -212,6 +218,259 @@
             "schema": {
               "$ref": "#/definitions/comment"
             }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comment/{id}": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "description": "Endpoint to get a comment by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID Comment."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Comment"
+        ],
+        "description": "Endpoint to update a comment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "updateComment",
+            "in": "body",
+            "description": "Comment Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment updated.",
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "description": "Endpoint to delete a comment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comment/product/{id}": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "description": "Endpoint to get a comment by product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID Product."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to get all Products",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Products found.",
+            "schema": {
+              "$ref": "#/definitions/products"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to create a product",
+        "parameters": [
+          {
+            "name": "newProduct",
+            "in": "body",
+            "description": "product Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to get a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID Product."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to update a Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "updateProduct",
+            "in": "body",
+            "description": "Product Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to delete a product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -318,6 +577,98 @@
         "text",
         "userId"
       ]
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "rating": {
+            "type": "number",
+            "example": 5
+          },
+          "text": {
+            "type": "string",
+            "example": "This is a comment"
+          },
+          "image": {},
+          "userId": {
+            "type": "number",
+            "example": 1
+          }
+        },
+        "required": [
+          "id",
+          "rating",
+          "text",
+          "userId"
+        ]
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "description": {
+          "type": "string",
+          "example": "This is a product"
+        },
+        "ImageString": {},
+        "pricePerUnit": {
+          "type": "number",
+          "example": 10.99
+        },
+        "shippingCost": {
+          "type": "number",
+          "example": 5.99
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "ImageString",
+        "pricePerUnit",
+        "shippingCost"
+      ]
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "description": {
+            "type": "string",
+            "example": "This is a product"
+          },
+          "ImageString": {},
+          "pricePerUnit": {
+            "type": "number",
+            "example": 10.99
+          },
+          "shippingCost": {
+            "type": "number",
+            "example": 5.99
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "ImageString",
+          "pricePerUnit",
+          "shippingCost"
+        ]
+      }
     }
   }
 }

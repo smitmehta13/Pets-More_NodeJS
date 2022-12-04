@@ -8,18 +8,12 @@ const autoIncrementModelID = require('./Counter');
 const CommentSchema = new Schema({
     id: {type: Number ,
     unique: true
-    
     },
-    rating:{type: Number},
-    text:{type: String},
+    rating:{type: Number,required: true},
+    text:{type: String,required: true},
     image:{type:String},
-    userId:{type: Number,
-    required: true,
-    ref: 'User'
-
-        
-
-    },
+    userId:{type: Number,required: true},
+    productId:{type: Number,required: true},
 });
 CommentSchema.pre('save', function (next) {
     if (!this.isNew) {
