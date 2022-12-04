@@ -11,19 +11,20 @@
 
 ## What is this for?
 Assignment 4
-Instructions
-Server NodeJS
-Client PostMan
-Database MongoDB/Mongoose
+-Instructions
+-Server NodeJS
+-Client PostMan
+-Database MongoDB/Mongoose
+
 Task
 
 Working in groups of up to 3, create a NodeJS implementation of the server components required to provide data from a MongoDB database instance to the Javascript client described in Project 1.
 To complete this project, you will need database entities like the following:
-• Product (description, image, pricing, shipping cost)
-• User (email, password, username, purchase history, shipping address)
-• Comments (product, user, rating, image(s), text)
-• Cart (products, quantities, user)
-• Order (recording of a sale)
+-Product (description, image, pricing, shipping cost)
+-User (email, password, username, purchase history, shipping address)
+-Comments (product, user, rating, image(s), text)
+-Cart (products, quantities, user)
+-Order (recording of a sale)
 You will test your project using PostMan to validate your endpoints behave appropriately in both success and failure cases. Provide captured test output as part of your assignment submission. You should, in theory, be able to use the same PostMan tests for assignments 2-4.
 
 
