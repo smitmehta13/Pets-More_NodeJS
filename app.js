@@ -1,14 +1,7 @@
 //Includes
 const express = require("express");
-var https = require("https");
-var http = require("http");
-var fs = require("fs");
-//Handle request
-const bodyParser = require("body-parser");
-//conect to DB
+//connect to DB
 const connectDB = require("./config/db");
-//handle .env
-const dotenv = require("dotenv").config();
 //routes
 const Users = require("./router/User");
 const Database = require("./router/Database");
