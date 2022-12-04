@@ -81,7 +81,10 @@ npm run swagger-autogen
 ```
 
 The server will start Running on
-+ http://localhost:4000/
++ https://localhost:4000/
+
+swagger will be Running on
++ https://localhost:4000/api-docs
 
 
 ## Author
