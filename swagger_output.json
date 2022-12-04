@@ -8,7 +8,7 @@
   "host": "localhost:4000",
   "basePath": "/api",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/user": {

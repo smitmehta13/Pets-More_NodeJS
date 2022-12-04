@@ -25,7 +25,7 @@ const userData = [
         name:"Lopez Roman",
         email:"anotherTest@email.com",
         password:"supersecretpassword",  
-        ShippingAddress:"4321 Main St"
+        shippingAddress:"4321 Main St"
     },
     ];
  

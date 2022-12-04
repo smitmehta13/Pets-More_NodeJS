@@ -11,7 +11,7 @@ const UserSchema = new Schema({
     name:{type: String},
     email:{type: String},
     password:{type: String},
-    ShippingAddress:{type:String}
+    shippingAddress:{type:String}
 });
 
 UserSchema.pre('save', function (next) {

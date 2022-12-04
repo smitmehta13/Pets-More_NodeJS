@@ -12,6 +12,7 @@ const doc = {
     },
     host: `localhost:${port}`,
     basePath: "/api",
+    schemes: ['https'],
     definitions: {
         user: {
             $id : 1 ,
