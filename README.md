@@ -46,7 +46,7 @@ This Project is not deployed yet.
 ### •Registration Form:
 Allows the user to register their account by filling their Email, Username, Password.
 
-<img src="/docs/swagger.PNG" height="250" width="390" style="border: 1px solid black;">
+<img src="./docs/swagger.png" height="250" width="390" style="border: 1px solid black;">
  
 
 ### DataBase:
