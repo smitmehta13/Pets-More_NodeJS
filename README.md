@@ -44,10 +44,9 @@ This Project is not deployed yet.
 
 ## Running the tests
 
-### •Registration Form:
-Allows the user to register their account by filling their Email, Username, Password.
-
-<img src="https://dev.azure.com/Jmartinezpineda4056/7fc0b520-5dad-49ab-a6f6-6d72204fad0f/_apis/git/repositories/0707e200-be92-4daf-987d-73de9331912d/items?path=/docs/swagger.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0" height="400" width="400" style="border: 1px solid black;">
+### swagger
+Allows the develpers to see documentation
+<img src="https://dev.azure.com/Jmartinezpineda4056/7fc0b520-5dad-49ab-a6f6-6d72204fad0f/_apis/git/repositories/0707e200-be92-4daf-987d-73de9331912d/items?path=/docs/swagger.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0" height="400" width="500" style="border: 1px solid black;">
  
 
 ### DataBase:
