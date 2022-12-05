@@ -6,6 +6,7 @@ const endpointsFiles = [
   "./router/Database.js",
   "./router/Comment.js",
   "./router/Product.js",
+  "./router/Cart.js",
 ];
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 5000;

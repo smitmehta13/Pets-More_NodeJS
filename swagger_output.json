@@ -480,6 +480,168 @@
           }
         }
       }
+    },
+    "/cart": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Endpoint to get all carts.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Carts found.",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Endpoint to create a cart.",
+        "parameters": [
+          {
+            "name": "newCart",
+            "in": "body",
+            "description": "Cart Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "cart",
+            "in": "body",
+            "description": "Cart Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/cart/{id}": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Endpoint to get a cart by user id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "User id."
+          },
+          {
+            "name": "newCart",
+            "in": "body",
+            "description": "Cart Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Endpoint to update a cart by user id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "User id."
+          },
+          {
+            "name": "cart",
+            "in": "body",
+            "description": "Cart Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "description": "Endpoint to delete a cart by user id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "User id."
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "definitions": {
