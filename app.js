@@ -7,6 +7,7 @@ const Users = require("./router/User");
 const Database = require("./router/Database");
 const Comment = require("./router/Comment");
 const Product = require("./router/Product");
+const Cart = require("./router/Cart");
 //swagger
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger_output.json");
@@ -30,6 +31,7 @@ app.use("/api", Users);
 app.use("/api", Database);
 app.use("/api", Comment);
 app.use("/api", Product);
+app.use("/api", Cart);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
