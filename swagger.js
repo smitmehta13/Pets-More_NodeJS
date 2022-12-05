@@ -53,7 +53,6 @@ const doc = {
         $userId: 1,
       },
     ],
-
     product: {
       $id: 1,
       $description: "This is a product",
@@ -70,8 +69,31 @@ const doc = {
         $shippingCost: 5.99,
       },
     ],
+    cart: {
+      $user: {
+        $id: 1,
+        $name: "Jose Martinez",
+        $email: "joshepp@hotmail.com",
+        $password: "2s.lsds",
+        $shippingAddress: "1234 Main St",
+      },
+      $products: [
+        {
+          $id: 1,
+          $description: "This is a product",
+          $ImageString: null,
+          $pricePerUnit: 10.99,
+          $shippingCost: 5.99,
+        },
+      ],
+    },
+    productIds: [
+      {
+        $_id: "5f9f1b9b9b9b9b9b9b9b9b9b",
+      },
+    ],
   },
 };
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-  require("./app.js");
+  require("./bin/www");
 });

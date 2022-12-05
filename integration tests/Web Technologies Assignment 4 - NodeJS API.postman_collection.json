@@ -857,20 +857,7 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"if (jsonData.length > 0) {\r",
-									"    pm.test(\"Test data type of the response\", () => {\r",
-									"        pm.expect(jsonData).to.be.an(\"array\");    \r",
-									"        jsonData.forEach(element => {\r",
-									"            pm.expect(element.id).to.be.a(\"number\");\r",
-									"            pm.expect(element.userId).to.be.a(\"number\");\r",
-									"            pm.expect(element.user).to.be.a(\"object\");\r",
-									"        });\r",
-									"    });\r",
-									"} "
+									"}); "
 								],
 								"type": "text/javascript"
 							}
@@ -905,14 +892,6 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Test data type of the response\", () => {    \r",
-									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
-									"    pm.expect(jsonData.user).to.be.a(\"object\");\r",
-									"    pm.expect(jsonData.lineItems).to.be.a(\"array\");    \r",
-									"});\r",
-									" \r",
 									""
 								],
 								"type": "text/javascript"
@@ -945,8 +924,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -958,7 +937,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 1\r\n}",
+							"raw": "{\r\n    \"userId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -987,8 +966,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1042,7 +1021,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"_id\": \"638d270cab0be2647c751d55\",\r\n            \"id\": 1,\r\n            \"description\": \"Product 1\",\r\n            \"image\": \"https://picsum.photos/200/300\",\r\n            \"pricePerUnit\": 10,\r\n            \"shippingCost\": 5,\r\n            \"__v\": 0\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"_id\": \"638e06677c7a093be51a4ba2\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1066,7 +1045,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete a Cart",
+					"name": "Delete a Cart by UserId",
 					"event": [
 						{
 							"listen": "test",
@@ -1093,7 +1072,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/cart/1",
+							"raw": "https://localhost:{{port}}/api/cart/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1102,7 +1081,7 @@
 							"path": [
 								"api",
 								"cart",
-								"1"
+								"2"
 							]
 						}
 					},
