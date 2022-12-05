@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "51259251-52ae-4b0a-892c-a7f9de1ffe3f",
+		"_postman_id": "58436783-c993-483c-ba80-9e38c85f6e8e",
 		"name": "Web Technologies Assignment 4 - NodeJS API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11269705"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -881,7 +880,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts",
+							"raw": "https://localhost:{{port}}/api/cart",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -889,7 +888,7 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts"
+								"cart"
 							]
 						}
 					},
@@ -924,7 +923,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts/1",
+							"raw": "https://localhost:{{port}}/api/cart/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -932,44 +931,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts",
+								"cart",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cart Not Found",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 404\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
-									"});\r",
-									" \r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:{{port}}/api/carts/1231231",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"carts",
-								"1231231"
 							]
 						}
 					},
@@ -995,7 +958,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 2\r\n}",
+							"raw": "{\r\n    \"userId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1003,7 +966,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts",
+							"raw": "https://localhost:{{port}}/api/cart",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1011,7 +974,7 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts"
+								"cart"
 							]
 						}
 					},
@@ -1024,8 +987,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1045,7 +1008,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts",
+							"raw": "https://localhost:{{port}}/api/cart",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1053,14 +1016,14 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts"
+								"cart"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create a New Cart Line Item",
+					"name": "Update Cart",
 					"event": [
 						{
 							"listen": "test",
@@ -1075,11 +1038,11 @@
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"quantity\": 1,\r\n    \"productId\": 1\r\n}",
+							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"_id\": \"638d270cab0be2647c751d55\",\r\n            \"id\": 1,\r\n            \"description\": \"Product 1\",\r\n            \"image\": \"https://picsum.photos/200/300\",\r\n            \"pricePerUnit\": 10,\r\n            \"shippingCost\": 5,\r\n            \"__v\": 0\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1087,7 +1050,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts/1/line-items",
+							"raw": "https://localhost:{{port}}/api/cart/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1095,9 +1058,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts",
-								"1",
-								"line-items"
+								"cart",
+								"1"
 							]
 						}
 					},
@@ -1110,8 +1072,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 204\", function () {\r",
-									"    pm.response.to.have.status(204);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1131,7 +1093,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/carts/2",
+							"raw": "https://localhost:{{port}}/api/cart/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1139,52 +1101,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"carts",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a Cart Line Item",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 204\", function () {\r",
-									"    pm.response.to.have.status(204);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:{{port}}/api/carts/line-items/2",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"carts",
-								"line-items",
-								"2"
+								"cart",
+								"1"
 							]
 						}
 					},
