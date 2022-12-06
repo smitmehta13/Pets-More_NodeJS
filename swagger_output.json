@@ -481,144 +481,6 @@
         }
       }
     },
-    "/order": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "description": "Endpoint to get all orders.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Orders found.",
-            "schema": {
-              "$ref": "#/definitions/orders"
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "description": "Endpoint to create a order.",
-        "parameters": [
-          {
-            "name": "newOrder",
-            "in": "body",
-            "description": "Order Information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/order"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/order/{id}": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "description": "Endpoint to get a order by order id.",
-        "parameters": [
-          {
-            "orderId": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Order id."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "description": "Endpoint to update a order by order id.",
-        "parameters": [
-          {
-            "orderId": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Order id."
-          },
-          {
-            "name": "order",
-            "in": "body",
-            "description": "Order Information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/order"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Order"
-        ],
-        "description": "Endpoint to delete a order by order id.",
-        "parameters": [
-          {
-            "orderId": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Order id."
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    }
-  },
     "/cart": {
       "get": {
         "tags": [
@@ -771,6 +633,136 @@
         }
       }
     },
+    "/order": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to create a order.",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "in": "body",
+            "description": "Order information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newOrder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order created",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to find an order by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Order id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order found.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "404": {
+            "description": "Order not found.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to delete an order by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Order id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/order"
+            },
+            "description": "Order deleted."
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Order not found.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "500": {
+            "description": "Error.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        }
+      }
+    }
+  },
   "definitions": {
     "user": {
       "type": "object",
@@ -994,53 +986,6 @@
             "shippingAddress"
           ]
         },
-        "order": {
-          "type": "object",
-          "properties": {
-            "orderId": {
-              "type": "number",
-              "example": 1
-            },
-            "name": {
-              "type": "string",
-              "example": "Jose Martinez"
-            },
-            "shippingAddress": {
-              "type": "string",
-              "example": "1234 Main St"
-            }
-          },
-          "required": [
-            "id",
-            "name",
-            "shippingAddress"
-          ]
-        },
-        "orders": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1
-              },
-              "name": {
-                "type": "string",
-                "example": "Jose Martinez"
-              },
-              "shippingAddress": {
-                "type": "string",
-                "example": "1234 Main St"
-              }
-            },
-            "required": [
-              "id",
-              "name",
-              "shippingAddress"
-            ]
-          }
-        },
         "products": {
           "type": "array",
           "items": {
@@ -1100,6 +1045,93 @@
         "userId": {
           "type": "number",
           "example": 1
+        }
+      }
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "userId": {
+          "type": "number",
+          "example": 1
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "products"
+      ]
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "userId": {
+            "type": "number",
+            "example": 1
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "products"
+        ]
+      }
+    },
+    "newOrder": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number",
+          "example": 1
+        },
+        "productIds": {
+          "type": "array",
+          "example": [
+            "5f9f1b9b9b9b9b9b9b9b9b9b"
+          ],
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
