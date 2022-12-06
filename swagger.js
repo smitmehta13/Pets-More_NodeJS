@@ -7,6 +7,7 @@ const endpointsFiles = [
   "./router/Comment.js",
   "./router/Product.js",
   "./router/Cart.js",
+  "./router/Order.js",
 ];
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -91,10 +92,34 @@ const doc = {
       {
         $_id: "5f9f1b9b9b9b9b9b9b9b9b9b",
       },
-    ] ,
+    ],
     newCart: {
       userId: 1,
-    }
+    },
+    order: {
+      $id: 1,
+      $userId: 1,
+      $products: [
+        {
+          $id: 1,
+        },
+      ],
+    },
+    orders: [
+      {
+        $id: 1,
+        $userId: 1,
+        $products: [
+          {
+            $id: 1,
+          },
+        ],
+      },
+    ],
+    newOrder: {
+      userId: 1,
+      productIds: ["5f9f1b9b9b9b9b9b9b9b9b9b"],
+    },
   },
 };
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
