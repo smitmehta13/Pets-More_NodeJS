@@ -511,6 +511,7 @@
         "parameters": [
           {
             "name": "newOrder",
+            "in": "body",
             "description": "Order Information.",
             "required": true,
             "schema": {
@@ -540,17 +541,10 @@
         "parameters": [
           {
             "orderId": "id",
+            "in": "path",
             "required": true,
             "type": "integer",
             "description": "Order id."
-          },
-          {
-            "name": "newOrder",
-            "description": "Order Information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/order"
-            }
           }
         ],
         "responses": {
@@ -573,12 +567,14 @@
         "parameters": [
           {
             "orderId": "id",
+            "in": "path",
             "required": true,
             "type": "integer",
             "description": "Order id."
           },
           {
             "name": "order",
+            "in": "body",
             "description": "Order Information.",
             "required": true,
             "schema": {
@@ -606,6 +602,7 @@
         "parameters": [
           {
             "orderId": "id",
+            "in": "path",
             "required": true,
             "type": "integer",
             "description": "Order id."
