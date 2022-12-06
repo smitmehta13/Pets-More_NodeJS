@@ -32,7 +32,7 @@ const findCartById = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    
+
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
@@ -42,7 +42,7 @@ const findCartById = (req, res) => {
                     schema: { $ref: "#/definitions/cart" },
                     description: "Cart found."
             } */
-        cart && !err &&  res.status(200).json(cart);
+        cart && !err && res.status(200).json(cart);
       })
         .populate("user")
         .populate("products");
@@ -60,17 +60,17 @@ const createCart = (req, res) => {
                 required: true,
                 schema: { $ref: "#/definitions/newCart" },
         } */
-            
+
   // find user
   User.findOne({ id: req.body.userId }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    
+
     if (user) {
       // check if user has a cart
       Cart.findOne({ user: user._id }, (err, cart) => {
         err && res.status(500).send({ message: `Error: ${err}` });
-         
+
         // if the user has a cart, return error
         if (cart) {
           res.status(409).send({ message: "User already has a cart" });
@@ -93,7 +93,6 @@ const createCart = (req, res) => {
 
 // update a cart by user id
 const updateCart = (req, res) => {
-  console.log(req.body);
   // #swagger.tags = ["Cart"];
   // #swagger.description = "Endpoint to update a cart by user id.";
   /* #swagger.parameters['id'] = {
@@ -112,7 +111,7 @@ const updateCart = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
- 
+
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
@@ -151,7 +150,7 @@ const deleteCart = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    
+
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
