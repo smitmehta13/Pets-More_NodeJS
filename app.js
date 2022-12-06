@@ -1,5 +1,7 @@
 //Includes
 const express = require("express");
+//Handle request
+const bodyParser = require('body-parser');
 //connect to DB
 const connectDB = require("./config/db");
 //routes
@@ -23,8 +25,9 @@ connectDB();
 
 //Middleware
 app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//handling bodyparser with big files
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 //Routes
 app.use("/api", Users);

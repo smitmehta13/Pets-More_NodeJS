@@ -512,26 +512,10 @@
           {
             "name": "newCart",
             "in": "body",
-            "description": "Cart Information.",
+            "description": "User Id",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cart"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "User id.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "cart",
-            "in": "body",
-            "description": "Cart Information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/productIds"
+              "$ref": "#/definitions/newCart"
             }
           }
         ],
@@ -541,6 +525,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
           },
           "500": {
             "description": "Internal Server Error"
@@ -561,26 +548,17 @@
             "required": true,
             "type": "integer",
             "description": "User id."
-          },
-          {
-            "name": "newCart",
-            "in": "body",
-            "description": "Cart Information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/cart"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Cart found.",
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
           },
           "404": {
             "description": "Not Found"
-          },
-          "409": {
-            "description": "Conflict"
           },
           "500": {
             "description": "Internal Server Error"
@@ -612,7 +590,10 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Cart found.",
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
           },
           "404": {
             "description": "Not Found"
@@ -637,6 +618,12 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Cart found.",
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          },
           "404": {
             "description": "Not Found"
           },
@@ -921,6 +908,15 @@
         "required": [
           "_id"
         ]
+      }
+    },
+    "newCart": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number",
+          "example": 1
+        }
       }
     }
   }
