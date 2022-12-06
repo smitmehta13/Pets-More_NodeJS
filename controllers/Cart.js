@@ -32,10 +32,7 @@ const findCartById = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    /* #swagger.responses[200] = {
-                    schema: { $ref: "#/definitions/user" },
-                    description: "User found
-            } */
+    
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
@@ -45,7 +42,7 @@ const findCartById = (req, res) => {
                     schema: { $ref: "#/definitions/cart" },
                     description: "Cart found."
             } */
-        res.status(200).json(cart);
+        cart && !err &&  res.status(200).json(cart);
       })
         .populate("user")
         .populate("products");
@@ -56,29 +53,24 @@ const findCartById = (req, res) => {
 // Create a new cart
 const createCart = (req, res) => {
   // #swagger.tags = ["Cart"];
-  // #swagger.description = "Endpoint to create a cart.";
+  // #swagger.description = "Endpoint to create a cart."
   /* #swagger.parameters['newCart'] = {
-                    in: 'body',
-                    description: 'Cart Information.',
-                    required: true,
-                    schema: { $ref: "#/definitions/cart" }
-            } */
+                in: 'body',
+                description: 'User Id',   
+                required: true,
+                schema: { $ref: "#/definitions/newCart" },
+        } */
+            
   // find user
   User.findOne({ id: req.body.userId }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    /* #swagger.responses[200] = {
-                        schema: { $ref: "#/definitions/user" },
-                        description: "User found
-                } */
+    
     if (user) {
       // check if user has a cart
       Cart.findOne({ user: user._id }, (err, cart) => {
         err && res.status(500).send({ message: `Error: ${err}` });
-        /* #swagger.responses[200] = {
-                        schema: { $ref: "#/definitions/cart" },
-                        description: "Cart found."
-                } */
+         
         // if the user has a cart, return error
         if (cart) {
           res.status(409).send({ message: "User already has a cart" });
@@ -120,10 +112,7 @@ const updateCart = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    /* #swagger.responses[200] = {
-                            schema: { $ref: "#/definitions/user" },
-                            description: "User found
-                    } */
+ 
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
@@ -162,10 +151,7 @@ const deleteCart = (req, res) => {
   User.findOne({ id: req.params.id }, (err, user) => {
     err && res.status(500).send({ message: `Error: ${err}` });
     !user && res.status(404).send({ message: "No user found" });
-    /* #swagger.responses[200] = {
-                                schema: { $ref: "#/definitions/user" },
-                                description: "User found
-                        } */
+    
     if (user) {
       // find cart
       Cart.findOne({ user: user._id }, (err, cart) => {
