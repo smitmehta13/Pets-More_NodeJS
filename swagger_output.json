@@ -481,6 +481,147 @@
         }
       }
     },
+    "/order": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to get all orders.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Orders found.",
+            "schema": {
+              "$ref": "#/definitions/orders"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to create a order.",
+        "parameters": [
+          {
+            "name": "newOrder",
+            "description": "Order Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to get a order by order id.",
+        "parameters": [
+          {
+            "orderId": "id",
+            "required": true,
+            "type": "integer",
+            "description": "Order id."
+          },
+          {
+            "name": "newOrder",
+            "description": "Order Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to update a order by order id.",
+        "parameters": [
+          {
+            "orderId": "id",
+            "required": true,
+            "type": "integer",
+            "description": "Order id."
+          },
+          {
+            "name": "order",
+            "description": "Order Information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Endpoint to delete a order by order id.",
+        "parameters": [
+          {
+            "orderId": "id",
+            "required": true,
+            "type": "integer",
+            "description": "Order id."
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
     "/cart": {
       "get": {
         "tags": [
@@ -645,8 +786,7 @@
           }
         }
       }
-    }
-  },
+    },
   "definitions": {
     "user": {
       "type": "object",
@@ -869,6 +1009,53 @@
             "password",
             "shippingAddress"
           ]
+        },
+        "order": {
+          "type": "object",
+          "properties": {
+            "orderId": {
+              "type": "number",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Jose Martinez"
+            },
+            "shippingAddress": {
+              "type": "string",
+              "example": "1234 Main St"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "shippingAddress"
+          ]
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "example": "Jose Martinez"
+              },
+              "shippingAddress": {
+                "type": "string",
+                "example": "1234 Main St"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "shippingAddress"
+            ]
+          }
         },
         "products": {
           "type": "array",
