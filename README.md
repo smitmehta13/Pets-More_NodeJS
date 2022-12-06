@@ -103,4 +103,4 @@ swagger will be Running on
 | ----------------- | :-------------------------------------------- |
 | **Jose Martinez** | **[jamp](https://github.com/joshepp)**        |
 | **Oscar Pinzon**  | **[opinzon](https://github.com/oscarpinzon)** |
-| **Smith Mehta**   | **[smetha](https://github.com/)**             |
+| **Smith Mehta**   | **[smetha](https://github.com/smit-dm)**             |

@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const Users = require("./router/User");
 const Database = require("./router/Database");
 const Comment = require("./router/Comment");
+const Order = require("./router/Order");
 const Product = require("./router/Product");
 const Cart = require("./router/Cart");
 //swagger
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api", Users);
 app.use("/api", Database);
 app.use("/api", Comment);
+app.use("/api", Order);
 app.use("/api", Product);
 app.use("/api", Cart);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
