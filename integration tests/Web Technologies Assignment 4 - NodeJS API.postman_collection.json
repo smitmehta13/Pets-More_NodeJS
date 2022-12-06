@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "8ff78654-d748-40e4-977f-2858990c7e38",
+		"_postman_id": "96a650b3-5f92-47c0-99a7-a067421dd931",
 		"name": "Web Technologies Assignment 4 - NodeJS API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11269705"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -1518,7 +1517,7 @@
 			"name": "Orders",
 			"item": [
 				{
-					"name": "All Orders",
+					"name": "Create a New Order",
 					"event": [
 						{
 							"listen": "test",
@@ -1530,17 +1529,50 @@
 									"\r",
 									"const jsonData = pm.response.json();\r",
 									"\r",
-									"if (jsonData.length > 0) {\r",
-									"    pm.test(\"Test data type of the response\", () => {\r",
-									"        pm.expect(jsonData).to.be.an(\"array\");    \r",
-									"        jsonData.forEach(element => {\r",
-									"            pm.expect(element.id).to.be.a(\"number\");\r",
-									"            pm.expect(element.userId).to.be.a(\"number\");\r",
-									"            pm.expect(element.orderDate).to.be.a(\"string\");\r",
-									"            pm.expect(element.shippingAddress).to.be.a(\"string\");\r",
-									"        });\r",
-									"    });\r",
-									"} "
+									"// Set order id for future tests\r",
+									"pm.collectionVariables.set('orderId', jsonData._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"productIds\": [\r\n        {\r\n            \"_id\": \"{{productId}}\"\r\n        },\r\n        {\r\n            \"_id\": \"{{productId}}\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{port}}/api/order",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}); "
 								],
 								"type": "text/javascript"
 							}
@@ -1550,7 +1582,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:{{port}}/api/orders",
+							"raw": "https://localhost:{{port}}/api/order",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1558,7 +1590,7 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"orders"
+								"order"
 							]
 						}
 					},
@@ -1573,18 +1605,7 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Test data type of the response\", () => {    \r",
-									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
-									"    pm.expect(jsonData.userId).to.be.a(\"number\");\r",
-									"    pm.expect(jsonData.orderDate).to.be.a(\"string\");\r",
-									"    pm.expect(jsonData.shippingAddress).to.be.a(\"string\");    \r",
-									"});\r",
-									" \r",
-									""
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1594,7 +1615,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:{{port}}/api/orders/1",
+							"raw": "https://localhost:{{port}}/api/order/{{orderId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1602,8 +1623,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"orders",
-								"1"
+								"order",
+								"{{orderId}}"
 							]
 						}
 					},
@@ -1630,7 +1651,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:{{port}}/api/orders/1231231",
+							"raw": "https://localhost:{{port}}/api/order/5f9f1b9b9b9b9b9b9b9b9b9b",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1638,50 +1659,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"orders",
-								"1231231"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create a New Order",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:{{port}}/api/orders",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "{{port}}",
-							"path": [
-								"api",
-								"orders"
+								"order",
+								"5f9f1b9b9b9b9b9b9b9b9b9b"
 							]
 						}
 					},
@@ -1715,7 +1694,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:{{port}}/api/orders/1",
+							"raw": "https://localhost:{{port}}/api/order/{{orderId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1723,8 +1702,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"orders",
-								"1"
+								"order",
+								"{{orderId}}"
 							]
 						}
 					},
@@ -1778,6 +1757,11 @@
 			"key": "UserId",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

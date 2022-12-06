@@ -91,10 +91,14 @@ const doc = {
       {
         $_id: "5f9f1b9b9b9b9b9b9b9b9b9b",
       },
-    ] ,
+    ],
     newCart: {
       userId: 1,
-    }
+    },
+    newOrder: {
+      userId: 1,
+      productIds: ["5f9f1b9b9b9b9b9b9b9b9b9b"],
+    },
   },
 };
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {

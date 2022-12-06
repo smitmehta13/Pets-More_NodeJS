@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
+const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
 //Find all
@@ -13,61 +14,110 @@ const findAllOrders = asyncHandler(async (req, res) => {
 
 //Delete
 const deleteOrder = asyncHandler(async (req, res) => {
-  Order.findOneAndDelete({ id: req.params.id }, (err, order) => {
-    err && res.status(500).send({ message: `Error: ${err}` });
+  // #swagger.tags = ["Order"];
+  // #swagger.description = "Endpoint to delete an order by id.";
+  /* #swagger.parameters['id'] = {
+                    in: 'path',
+                    description: 'Order id.',
+                    required: true,
+                    type: 'integer'
+            } */
+  Order.findByIdAndDelete(req.params.id, (err, order) => {
+    /* #swagger.responses[200] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Order deleted."
+            } */
+    /* #swagger.responses[404] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Order not found."
+            } */
+    /* #swagger.responses[500] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Error."
+            } */
+    err &&
+      res.status(500).send({ message: `Error deleting the order: ${err}` });
     !order && res.status(404).send({ message: "order not found" });
-    order && !err && res.status(200).send({ message: `order deleted` });
+    order && !err && res.status(204).send({ message: `order deleted` });
   });
 });
 
 //findById
-const findById = asyncHandler(async (req, res) => {
-  Order.findOne({ id: req.params.id }, (err, order) => {
+const findById = (req, res) => {
+  // #swagger.tags = ["Order"];
+  // #swagger.description = "Endpoint to find an order by id.";
+  /* #swagger.parameters['id'] = {
+                    in: 'path',
+                    description: 'Order id.',
+                    required: true,
+                    type: 'integer'
+            } */
+  Order.findById(req.params.id, (err, order) => {
+    /* #swagger.responses[200] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Order found."
+            } */
+    /* #swagger.responses[404] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Order not found."
+            } */
+    /* #swagger.responses[500] = {
+                    schema: { $ref: "#/definitions/order" },
+                    description: "Internal server error."
+            } */
     err && res.status(500).send({ message: `Error: ${err}` });
     !order && res.status(404).send({ message: "Order not found" });
-
     !err && order && res.status(200).json(order);
   });
-});
+};
 
-//Update a order
-
-const updateOrder = asyncHandler(async (req, res) => {
-  Order.findOneAndUpdate(
-    { id: req.params.id },
-    req.body,
-    { new: true },
-    (err, order) => {
-      err && res.status(500).send({ message: `Error: ${err}` });
-      !order && res.status(404).send({ message: "Ordder not found" });
-      order && !err && res.status(200).json(order);
-      //check if not found
-    }
-  );
-});
-
-//Add   a order
-const addOrder = asyncHandler(async (req, res) => {
-  Order.findOne({ id: req.id }, function (err, data) {
-    if (!data) {
-      let order = new Order({
-        userId: req.body.userId,
-        dateTime: getDate(),
-        shippingAddress: req.body.shippingAddress,
+//Create a new order
+const addOrder = (req, res) => {
+  // #swagger.tags = ["Order"];
+  // #swagger.description = "Endpoint to create a order."
+  /* #swagger.parameters['newOrder'] = {
+                in: 'body',
+                description: 'Order information',
+                required: true,
+                schema: { $ref: "#/definitions/newOrder" },
+                type: 'object'
+        } */
+  // find user
+  User.findOne({ id: req.body.userId }, (err, user) => {
+    /* #swagger.responses[500] = {
+                    description: 'Error',
+                    schema: { $ref: "#/definitions/Error" }
+            } */
+    err && res.status(500).send({ message: `Error finding user: ${err}` });
+    /* #swagger.responses[404] = {
+                    description: 'User not found',
+                    schema: { $ref: "#/definitions/User" }
+            } */
+    !user && res.status(404).send({ message: "User not found" });
+    if (user) {
+      const order = new Order({
+        user: user._id,
+        products: req.body.productIds,
+        orderDate: Date.now(),
+        shippingAddress: user.shippingAddress,
       });
 
       order.save((err, order) => {
-        err && res.status(500).send({ message: `Error: ${err}` });
+        err &&
+          res.status(500).send({ message: `Error creating order: ${err}` });
+        /* #swagger.responses[200] = {
+                    description: 'Order created',
+                    schema: { $ref: "#/definitions/Order" }
+            } */
         !err && res.status(200).json(order);
       });
     }
   });
-});
+};
 
 module.exports = {
   findAllOrders,
   findById,
   addOrder,
-  updateOrder,
   deleteOrder,
 };
