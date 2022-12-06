@@ -20,7 +20,7 @@ const deleteOrder = asyncHandler(async (req, res) => {
                     in: 'path',
                     description: 'Order id.',
                     required: true,
-                    type: 'integer'
+                    type: 'string'
             } */
   Order.findByIdAndDelete(req.params.id, (err, order) => {
     /* #swagger.responses[200] = {
@@ -50,7 +50,7 @@ const findById = (req, res) => {
                     in: 'path',
                     description: 'Order id.',
                     required: true,
-                    type: 'integer'
+                    type: 'string'
             } */
   Order.findById(req.params.id, (err, order) => {
     /* #swagger.responses[200] = {

@@ -698,7 +698,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "integer",
+            "type": "string",
             "description": "Order id."
           }
         ],
@@ -733,7 +733,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "integer",
+            "type": "string",
             "description": "Order id."
           }
         ],
