@@ -8,7 +8,11 @@ const db = mongoose.connection;
 
 const connectDB = () => {
   // setup default mongoose connection
-  mongoose.connect(`mongodb://${urlDataBase}/${database}`, {
+  // mongoose.connect(`mongodb://${urlDataBase}/${database}`, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
+  mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -16,7 +20,8 @@ const connectDB = () => {
   db.on("connected", function () {
     console.log(
       "Mongoose default connection is open to ",
-      `mongodb://${urlDataBase}/${database}`
+      process.env.MONGO_URI
+      // `mongodb://${urlDataBase}/${database}`
     );
   });
   // Bind connection to error event (to get notification of connection errors)
