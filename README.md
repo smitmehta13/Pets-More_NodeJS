@@ -103,4 +103,5 @@ swagger will be Running on
 | ----------------- | :-------------------------------------------- |
 | **Jose Martinez** | **[jamp](https://github.com/joshepp)**        |
 | **Oscar Pinzon**  | **[opinzon](https://github.com/oscarpinzon)** |
-| **Smit Mehta**   | **[smetha](https://github.com/smit-dm)**             |
+| **Smit Mehta**   | **[smetha](https://github.com/smitmehta13)**             |
+# Pets-More_NodeJS
